@@ -2,6 +2,7 @@ using Microsoft.Extensions.Localization;
 using Moq;
 using TaskTracker.Api;
 using TaskTracker.Api.Validators;
+using TaskTracker.Application.Utilities;
 using TaskTracker.Tests.Utilities;
 
 namespace TaskTracker.Tests.Setup
@@ -12,25 +13,28 @@ namespace TaskTracker.Tests.Setup
         public static void Configure(Mock<IStringLocalizer<GlobalResource>> localizerMock)
         {
             localizerMock
-                .Setup(x => x["TITLE_REQUIRED"])
-                .Returns(new LocalizedString("TITLE_REQUIRED", ErrorMessageConstants.TitleMessage));
+                .Setup(x => x[ErrorConstants.TitleRequired])
+                .Returns(new LocalizedString(ErrorConstants.TitleRequired, ErrorMessageConstants.TitleMessage));
             
             localizerMock
-                .Setup(x => x["TITLE_MAX_LENGTH_100"])
-                .Returns(new LocalizedString("TITLE_MAX_LENGTH_100", ErrorMessageConstants.TitleMaxLengthMessage));
+                .Setup(x => x[ErrorConstants.TitleMaxLength])
+                .Returns(new LocalizedString(ErrorConstants.TitleMaxLength, ErrorMessageConstants.TitleMaxLengthMessage));
             
             localizerMock
-                .Setup(x => x["INVALID_STATUS"])
-                .Returns(new LocalizedString("INVALID_STATUS", ErrorMessageConstants.InvalidStatusMessage));
+                .Setup(x => x[ErrorConstants.InvalidStatus])
+                .Returns(new LocalizedString(ErrorConstants.InvalidStatus, ErrorMessageConstants.InvalidStatusMessage));
             
             localizerMock
-                .Setup(x => x["CANNOT_MARK_DONE"])
-                .Returns(new LocalizedString("CANNOT_MARK_DONE", ErrorMessageConstants.CannotMarkDoneMessage));
+                .Setup(x => x[ErrorConstants.CannotMarkDone])
+                .Returns(new LocalizedString(ErrorConstants.CannotMarkDone, ErrorMessageConstants.CannotMarkDoneMessage));
             
             localizerMock
-                .Setup(x => x["TASK_NOT_FOUND"])
-                .Returns(new LocalizedString("TASK_NOT_FOUND", ErrorMessageConstants.CannotMarkDoneMessage));
+                .Setup(x => x[ErrorConstants.TaskNotFound])
+                .Returns(new LocalizedString(ErrorConstants.TaskNotFound, ErrorMessageConstants.TaskNotFound));
             
+            localizerMock
+                .Setup(x => x[ErrorConstants.ServerError])
+                .Returns(new LocalizedString(ErrorConstants.ServerError, ErrorMessageConstants.ServerError));
            
         }
     }

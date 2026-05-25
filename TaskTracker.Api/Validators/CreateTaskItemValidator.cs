@@ -13,20 +13,20 @@ namespace TaskTracker.Api.Validators
             // Checking for null only will check for empty string in business logic
             RuleFor(t => t.Title)
                 .NotEmpty()
-                .WithMessage(localizer.GetString("TITLE_REQUIRED"));
+                .WithMessage(localizer.GetString(ErrorConstants.TitleRequired));
                 
             RuleFor(t => t.Title)
                 .MaximumLength(100)
-                .WithMessage(localizer.GetString("TITLE_MAX_LENGTH_100"));
+                .WithMessage(localizer.GetString(ErrorConstants.TitleMaxLength));
 
             RuleFor(t => t.Status)
                 .Must(status => status is Constants.Todo or Constants.InProgress or Constants.Done)
-                .WithMessage(localizer.GetString("INVALID_STATUS"));
+                .WithMessage(localizer.GetString(ErrorConstants.InvalidStatus));
             
             RuleFor(t => t.Title)
                 .NotEmpty()
                 .When( g => g.Status.Equals(Constants.Done))
-                .WithMessage(localizer.GetString("CANNOT_MARK_DONE"));
+                .WithMessage(localizer.GetString(ErrorConstants.CannotMarkDone));
         }
    
     }

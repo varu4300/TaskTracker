@@ -7,4 +7,5 @@ public class ErrorMessageConstants
     public const string InvalidStatusMessage = "Invalid task status (Todo, InProgress or Done)";
     public const string CannotMarkDoneMessage = "Cannot mark task as done without a valid title";
     public const string TaskNotFound = "Task not found";
+    public const string ServerError = "This service is temporaily unavailable, please try again later. If the issue persists, please contact us.";
 }

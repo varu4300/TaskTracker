@@ -13,6 +13,8 @@ using TaskTracker.Application.Interfaces;
 using TaskTracker.Application.Utilities;
 using TaskTracker.Tests.Setup;
 using Microsoft.Extensions.Logging;
+using TaskTracker.Domain.Exceptions;
+using TaskTracker.Tests.Utilities;
 
 namespace TaskTracker.Tests.UnitTests.Controllers
 {
@@ -101,6 +103,54 @@ namespace TaskTracker.Tests.UnitTests.Controllers
             
             // Assert
             Assert.IsType<BaseApiResponse<bool>>(result.Value);
+            Assert.Equivalent(response, result.Value);
+        }
+        
+        [Fact]
+        public async Task Get_All_Tasks_Should_Return_Empty()
+        {
+            // Arrange
+            _taskItemServiceMock
+                .Setup(x => x.GetTaskItemsAsync())
+                .ReturnsAsync([]);
+            
+            var response = new BaseApiResponse<List<TaskItemDTO>>
+            {
+                StatusCode = HttpStatusCode.OK,
+                Result = [],
+                Message = ""
+            };
+
+            // Act
+            var responseObj = await _controller.GetAllTasksAsync();
+            var result = responseObj as ObjectResult;
+            
+            // Assert
+            Assert.IsType<BaseApiResponse<List<TaskItemDTO>>>(result.Value);
+            Assert.Equivalent(response, result.Value);
+        }
+        
+        [Fact]
+        public async Task Get_All_Tasks_Should_Return_SERVER_ERROR()
+        {
+            // Arrange
+            var response = new BaseApiResponse<List<TaskItemDTO>>
+            {
+                StatusCode = HttpStatusCode.InternalServerError,
+                Result = null,
+                Message = ErrorMessageConstants.ServerError
+            };
+
+            _taskItemServiceMock
+                .Setup(x => x.GetTaskItemsAsync())
+                .ThrowsAsync(new Exception(ErrorConstants.ServerError));
+
+            // Act
+            var responseObj = await _controller.GetAllTasksAsync();
+            var result = responseObj as ObjectResult;
+            
+            // Assert
+            Assert.IsType<BaseApiResponse<List<TaskItemDTO>>>(result.Value);
             Assert.Equivalent(response, result.Value);
         }
     }

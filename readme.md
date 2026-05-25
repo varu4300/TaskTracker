@@ -60,3 +60,22 @@ TaskTracker
 - RESTful API principles
 - Swagger
 
+🧪 Unit Tests
+- Moq
+- xUnit
+- Covering all validations for requests
+- Covering the business transition rule
+```
+├── TaskTracker.Api (Controllers, Models, etc...)
+├── TaskTracker.Application (Business Logic)
+├── TaskTracker.Domain
+├── TaskTracker.Infrastructure (Infrastructure)
+├── TaskTracker.Tests (Unit tests)
+  ├── Setup/
+  ├── UnitTests/
+    ├── Controllers/
+    ├── Repositories/
+    ├── Services/
+    ├── Validators/
+  ├── Utilities/
+```

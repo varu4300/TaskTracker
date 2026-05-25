@@ -6,6 +6,7 @@ using TaskTracker.Application.Interfaces;
 using TaskTracker.Application.Services;
 using TaskTracker.Application.Utilities;
 using TaskTracker.Domain.Entities;
+using TaskTracker.Domain.Exceptions;
 using TaskTracker.Domain.Interfaces;
 using ILogger = Castle.Core.Logging.ILogger;
 
@@ -58,6 +59,36 @@ namespace TaskTracker.Tests.UnitTests.Services
             var result = await _taskItemService.CreateTaskItemAsync(dto);
             
             Assert.True(result);
+        }
+
+        [Fact]
+        public async Task Get_Task_Item_By_Id_Returns_Error()
+        {
+            var dto = new TaskItemDTO
+            {
+                Title = "Task1",
+                Description = "Task1",
+                Status = Constants.Todo,
+                DueDate = DateTime.Today
+            };
+            
+            _mapperMock
+                .Setup(x => x.Map<TaskItem>(It.IsAny<TaskItemDTO>()))
+                .Returns(new TaskItem
+                {
+                    Title = dto.Title,
+                    Description = dto.Description,
+                    Status = dto.Status,
+                    DueDate = dto.DueDate
+                });
+
+            _taskRepositoryMock
+                .Setup(x => x.GetTaskItemByIdAsync(It.IsAny<long>()))
+                .ThrowsAsync(new TaskTrackerException("TASK_NOT_FOUND"));
+            
+            var exception = await Assert.ThrowsAsync<TaskTrackerException>(() =>  _taskItemService.GetTaskItemByIdAsync(1));
+            
+            Assert.Equal(ErrorConstants.TaskNotFound, exception.Message);
         }
         
         [Fact]
