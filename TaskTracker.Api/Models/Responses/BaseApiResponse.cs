@@ -6,7 +6,7 @@ namespace TaskTracker.Api.Models.Responses
     {
         public T? Result { get; set; }
         
-        public string Message { get; set; } = string.Empty;
+        public string? Message { get; set; } = string.Empty;
         
         public HttpStatusCode StatusCode { get; set; }
     }

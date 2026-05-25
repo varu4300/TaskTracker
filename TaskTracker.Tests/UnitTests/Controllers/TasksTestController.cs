@@ -129,6 +129,30 @@ namespace TaskTracker.Tests.UnitTests.Controllers
             Assert.IsType<BaseApiResponse<List<TaskItemDTO>>>(result.Value);
             Assert.Equivalent(response, result.Value);
         }
+
+        [Fact]
+        public async Task Get_All_Tasks_Should_Return_BAD_REQUEST()
+        {
+            // Arrange
+            _taskItemServiceMock
+                .Setup(x => x.GetTaskItemsAsync())
+                .ThrowsAsync(new TaskTrackerException(""));
+            
+            var response = new BaseApiResponse<List<TaskItemDTO>>
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Result = null,
+                Message = null
+            };
+
+            // Act
+            var responseObj = await _controller.GetAllTasksAsync();
+            var result = responseObj as ObjectResult;
+            
+            // Assert
+            Assert.IsType<BaseApiResponse<List<TaskItemDTO>>>(result.Value);
+            Assert.Equivalent(response, result.Value);
+        }
         
         [Fact]
         public async Task Get_All_Tasks_Should_Return_SERVER_ERROR()
