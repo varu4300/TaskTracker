@@ -39,11 +39,13 @@ Assumptions Made
 
 🏗️ Architecture
 TaskTracker
+```
 ├── TaskTracker.Api (Controllers, Models, etc...)
 ├── TaskTracker.Application (Business Logic)
 ├── TaskTracker.Domain ()
 ├── TaskTracker.Infrastructure
 ├── TaskTracker.Tests
+```
 
 🧱 Tech Stack
 - .NET 10 Web API
