@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 using TaskTracker.Application.DTOs;
 using TaskTracker.Application.Interfaces;
 using TaskTracker.Application.Utilities;
@@ -12,12 +13,14 @@ namespace TaskTracker.Application.Services
     public class TaskItemService : ITaskItemService
     {
         private readonly ITaskRepository _taskRepository;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
+        private readonly ILogger<TaskItemService> _logger;
         
-        public TaskItemService(ITaskRepository taskRepository,  IMapper mapper)
+        public TaskItemService(ILogger<TaskItemService> logger,ITaskRepository taskRepository,  IMapper mapper)
         {
             _taskRepository = taskRepository;
             _mapper = mapper;
+            _logger = logger;
         }
         
         public async Task<bool> CreateTaskItemAsync(TaskItemDTO dto)
@@ -37,8 +40,9 @@ namespace TaskTracker.Application.Services
             {
                 throw new TaskTrackerException(ex.Message);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                _logger.LogError("[Error]: {Exception}", ex);
                 throw new Exception(ErrorConstants.ServerError);
             }
         }

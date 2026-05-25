@@ -54,13 +54,13 @@ namespace TaskTracker.Api.Controllers
             return StatusCode((int)response.StatusCode, response);
         }
         
-        [HttpGet("{taskItemId:long}")]
-        public async Task<IActionResult> GetTaskItemByIdAsync(long taskItemId)
+        [HttpGet("{id:long}")]
+        public async Task<IActionResult> GetTaskItemByIdAsync(long id)
         {
             var response = new BaseApiResponse<TaskItemDTO>();
             try
             {
-                var item = await _taskItemService.GetTaskItemByIdAsync(taskItemId);
+                var item = await _taskItemService.GetTaskItemByIdAsync(id);
                 response.Result = item;
                 response.StatusCode = HttpStatusCode.OK;
             }
@@ -77,13 +77,13 @@ namespace TaskTracker.Api.Controllers
             return StatusCode((int)response.StatusCode, response);
         }
         
-        [HttpDelete("{taskItemId:long}")]
-        public async Task<IActionResult> DeleteTaskItemByIdAsync(long taskItemId)
+        [HttpDelete("{id:long}")]
+        public async Task<IActionResult> DeleteTaskItemByIdAsync(long id)
         {
             var response = new BaseApiResponse<bool>();
             try
             {
-                var deleted = await _taskItemService.DeleteTaskItemAsync(taskItemId);
+                var deleted = await _taskItemService.DeleteTaskItemAsync(id);
                 response.Result = deleted;
                 response.StatusCode = HttpStatusCode.OK;
             }
@@ -103,7 +103,7 @@ namespace TaskTracker.Api.Controllers
         
         [ServiceFilter(typeof(CustomValidation<CreateTaskItemRequest>))]
         [HttpPost]
-        public async Task<IActionResult> CreateTaskItemByIdAsync(CreateTaskItemRequest request)
+        public async Task<IActionResult> CreateTaskItemAsync(CreateTaskItemRequest request)
         {
             var response = new BaseApiResponse<bool>();
             try

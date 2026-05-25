@@ -30,6 +30,10 @@ builder.Services.AddAutoMapper(cfg =>
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.LowercaseUrls = true;
+});
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -44,8 +48,10 @@ builder.Services.AddSwaggerGen(c =>
 // Lifetime of containers should only span for every HTTP Request
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<ITaskItemService, TaskItemService>();
-builder.Services.AddValidatorsFromAssemblyContaining<TaskItemRequestValidator>();
-builder.Services.AddScoped<CustomValidation<CreateTaskItemRequest>>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateTaskItemRequestValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateTaskItemRequestValidator>();
+builder.Services.AddScoped(typeof(CustomValidation<>));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

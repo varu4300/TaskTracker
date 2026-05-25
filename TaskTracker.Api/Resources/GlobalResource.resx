@@ -45,4 +45,11 @@
     <data name="DELETE_TASK_FAILED">
         <value>Failed to delete task</value>
     </data>
+    <data name="INVALID_STATUS">
+        <value>Invalid task status (Todo, InProgress or Done)</value>
+    </data>
+
+    <data name="CANNOT_MARK_DONE">
+        <value>Cannot mark task as done without a valid title</value>
+    </data>
 </root>

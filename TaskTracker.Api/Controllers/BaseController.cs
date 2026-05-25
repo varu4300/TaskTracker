@@ -4,8 +4,7 @@ using Asp.Versioning;
 namespace TaskTracker.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [ApiVersion("1.0")]
+    [Route("[controller]")]
     public class BaseController : ControllerBase
     {
 

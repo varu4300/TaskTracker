@@ -9,6 +9,7 @@ namespace TaskTracker.Api.Configs
     {
         public TaskItemProfile()
         {
+            CreateMap<TaskItemDTO, TaskItem>();
             CreateMap<TaskItem, TaskItemDTO>();
             CreateMap<CreateTaskItemRequest, TaskItemDTO>();
             CreateMap<UpdateTaskItemRequest, TaskItemDTO>();
