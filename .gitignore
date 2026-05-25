@@ -1,12 +1,4 @@
 # =========================
-# Rider output
-# =========================
-.idea/
-/_ReSharper.Caches/
-/packages/
-riderModule.iml
-
-# =========================
 # Build output
 # =========================
 **/bin/
@@ -25,7 +17,11 @@ riderModule.iml
 # =========================
 # Rider / JetBrains
 # =========================
+.idea/.idea.TaskTracker/.idea
 .idea/
+/_ReSharper.Caches/
+/packages/
+riderModule.iml
 
 # =========================
 # VS Code
