@@ -65,6 +65,7 @@ TaskTracker
 - xUnit
 - Covering all validations for requests
 - Covering the business transition rule
+- Covering the success path for Create a task item and updating task item
 ```
 ├── TaskTracker.Api (Controllers, Models, etc...)
 ├── TaskTracker.Application (Business Logic)
