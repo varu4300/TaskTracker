@@ -2,7 +2,7 @@
 A simple Task Tracker REST API built with ASP.NET Core Web API, following Clean Architecture principles.
 It supports full CRUD operations for managing task items.
 
-⚙️ To run project
+## ⚙️ To run project
 1) Ensure you're running .NET 10 (no mention of verions to use, defaulted to my workspace version)
 2) You will need to run migrations with following command from root of project (where .sln file is). Already created the migrations, but if needed to run again for some reason the following would be the command:
 ```
@@ -13,7 +13,7 @@ dotnet ef migrations add InitialCreate \
 3) Run the project
 4) Navigate to http://localhost:5149 (Swagger should open up for easy testing)
 
-Assumptions Made
+## ⚙️ Assumptions Made
 1) Status field is case sensitive
 2) Returning error message within the response as a string separated by the "," delimiter (ex. "Message 1, Message 2, ect...")
 3) Kept to a standard response
@@ -31,7 +31,7 @@ Assumptions Made
 5) Adding logging for tracing source of error by tag system "[LogLevel][ClassName][Method]: {{message}}"
 
 
-🚀 Features
+## 🚀 Features
 - Create task items
 - Retrieve all tasks 
 - Retrieve task by ID
@@ -41,7 +41,7 @@ Assumptions Made
 - Entity Framework Core integration
 - SQLite
 
-🏗️ Architecture
+## 🏗️ Architecture
 TaskTracker
 ```
 ├── TaskTracker.Api (Controllers, Models, etc...)
@@ -51,7 +51,7 @@ TaskTracker
 ├── TaskTracker.Tests (Unit tests)
 ```
 
-🧱 Tech Stack
+## 🧱 Tech Stack
 - .NET 10 Web API
 - C#
 - Entity Framework Core
@@ -60,7 +60,7 @@ TaskTracker
 - RESTful API principles
 - Swagger
 
-🧪 Unit Tests
+## 🧪 Unit Tests
 - Moq
 - xUnit
 - Covering all validations for requests
