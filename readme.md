@@ -15,7 +15,7 @@ dotnet ef migrations add InitialCreate \
 
 Assumptions Made
 1) Status field is case sensitive
-2) Returning error message within the response
+2) Returning error message within the response as a string separated by the "," delimiter (ex. "Message 1, Message 2, ect...")
 3) Kept to a standard response
 ```
 {
@@ -43,8 +43,8 @@ TaskTracker
 ├── TaskTracker.Api (Controllers, Models, etc...)
 ├── TaskTracker.Application (Business Logic)
 ├── TaskTracker.Domain ()
-├── TaskTracker.Infrastructure
-├── TaskTracker.Tests
+├── TaskTracker.Infrastructure (Infrastructure)
+├── TaskTracker.Tests (Unit tests)
 ```
 
 🧱 Tech Stack
