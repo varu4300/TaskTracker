@@ -24,7 +24,7 @@ Assumptions Made
   "statusCode": 200
 }
 ```
-4) Validation is performed while request is made to prevent extra work
+4) Validation is performed before request execution utilizing a service filter and leveraging Fluent Validations
 5) Since the task description did not include the format of endpoints the following would be the endpoints:
 -  GET PUT POST http://localhost:5149/api/tasks
 -  GET DELETE http://localhost:5149/api/tasks/{id}
