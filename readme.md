@@ -25,6 +25,9 @@ Assumptions Made
 }
 ```
 4) Validation is performed while request is made to prevent extra work
+5) Since the task description did not include the format of endpoints the following would be the endpoints:
+-  GET PUT POST http://localhost:5149/api/tasks
+-  GET DELETE http://localhost:5149/api/tasks/{id}
 
 
 🚀 Features

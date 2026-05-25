@@ -12,7 +12,7 @@ namespace TaskTracker.Api.Validators
         public UpdateTaskItemRequestValidator(IStringLocalizer<GlobalResource> localizer)
         {
             RuleFor(t => t.Title)
-                .Empty()
+                .NotEmpty()
                 .WithMessage(localizer.GetString("TITLE_REQUIRED"));
                 
             RuleFor(t => t.Title)
