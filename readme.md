@@ -2,17 +2,37 @@
 A simple Task Tracker REST API built with ASP.NET Core Web API, following Clean Architecture principles.
 It supports full CRUD operations for managing task items.
 
-⚙️ Design 
+⚙️ To run project
+1) Ensure you're running .NET 10 (no mention of verions to use, defaulted to my workspace version)
+2) You will need to run migrations with following command from root of project (where .sln file is)
+```
+dotnet ef migrations add InitialCreate \
+--project TaskTracker.Infrastructure \
+--startup-project TaskTracker.Api
+```
+3) Run the project
+4) Navigate to http://localhost:5149 (Swagger should open up for easy testing)
+
+Assumptions Made
+1) Status field is case sensitive
+2) Returning error message within the response
+3) Kept to a standard response
+```
+{
+  "result": [],
+  "message": "",
+  "statusCode": 200
+}
+```
+4) Validation is performed while request is made to prevent extra work
 
 
 🚀 Features
-| Method | Endpoint | Method | Endpoint         | Description   | Request Body |
-|--------|-------------------|------------------|---------------|--------------|
-| GET    | /api/tasks        | Get all tasks    | ❌           | List of tasks|
-| GET    | /api/tasks/{id}   | Get task by ID   | ❌           | Single task  |
-| POST   | /api/tasks        | Create new task  | ✅ Task DTO  | Created task |
-| PUT    | /api/tasks/{id}   | Update task      | ✅ Task DTO  | No content   |
-| DELETE | /api/tasks/{id}   | Delete task      | ❌           | No content   |
+- Create task items
+- Retrieve all tasks 
+- Retrieve task by ID
+- Update task items
+- Delete task items
 - Layered architecture (API / Application / Domain / Infrastructure)
 - Entity Framework Core integration
 - SQLite (or SQL Server configurable)
