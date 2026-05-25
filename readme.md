@@ -8,11 +8,11 @@ It supports full CRUD operations for managing task items.
 🚀 Features
 | Method | Endpoint | Method | Endpoint         | Description   | Request Body |
 |--------|-------------------|------------------|---------------|--------------|
-| GET    | /api/tasks        | Get all tasks     | ❌           | List of tasks|
-| GET    | /api/tasks/{id}   | Get task by ID    | ❌           | Single task  |
-| POST   | /api/tasks        | Create new task   | ✅ Task DTO  | Created task |
-| PUT    | /api/tasks/{id}   | Update task       | ✅ Task DTO  | No content   |
-| DELETE | /api/tasks/{id}   | Delete task       | ❌           | No content   |
+| GET    | /api/tasks        | Get all tasks    | ❌           | List of tasks|
+| GET    | /api/tasks/{id}   | Get task by ID   | ❌           | Single task  |
+| POST   | /api/tasks        | Create new task  | ✅ Task DTO  | Created task |
+| PUT    | /api/tasks/{id}   | Update task      | ✅ Task DTO  | No content   |
+| DELETE | /api/tasks/{id}   | Delete task      | ❌           | No content   |
 - Layered architecture (API / Application / Domain / Infrastructure)
 - Entity Framework Core integration
 - SQLite (or SQL Server configurable)
