@@ -35,7 +35,7 @@ Assumptions Made
 - Delete task items
 - Layered architecture (API / Application / Domain / Infrastructure)
 - Entity Framework Core integration
-- SQLite (or SQL Server configurable)
+- SQLite
 
 🏗️ Architecture
 TaskTracker
