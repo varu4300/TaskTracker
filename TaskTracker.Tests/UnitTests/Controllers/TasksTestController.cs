@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using AutoMapper;
+using Castle.Core.Logging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Moq;
@@ -10,6 +11,9 @@ using TaskTracker.Api.Models.Responses;
 using TaskTracker.Application.DTOs;
 using TaskTracker.Application.Interfaces;
 using TaskTracker.Application.Utilities;
+using TaskTracker.Tests.Setup;
+using Microsoft.Extensions.Logging;
+
 namespace TaskTracker.Tests.UnitTests.Controllers
 {
 
@@ -17,16 +21,20 @@ namespace TaskTracker.Tests.UnitTests.Controllers
     {
         private readonly TasksController _controller;
         private readonly Mock<ITaskItemService> _taskItemServiceMock;
+
         public TasksTestController()
         {
             _taskItemServiceMock = new Mock<ITaskItemService>();
             var mapperMock = new Mock<IMapper>();
             var localizerMock = new Mock<IStringLocalizer<GlobalResource>>();
+            var loggerMock = new Mock<ILogger<TasksController>>();
+            LocalizerSetup.Configure(localizerMock);
             
             _controller = new TasksController(
                 _taskItemServiceMock.Object,
                 localizerMock.Object,
-                mapperMock.Object
+                mapperMock.Object,
+                loggerMock.Object
             );
         }
         
@@ -95,9 +103,5 @@ namespace TaskTracker.Tests.UnitTests.Controllers
             Assert.IsType<BaseApiResponse<bool>>(result.Value);
             Assert.Equivalent(response, result.Value);
         }
-        
-        
-
-        
     }
 }

@@ -6,6 +6,7 @@ using TaskTracker.Application.Utilities;
 using TaskTracker.Domain.Entities;
 using TaskTracker.Domain.Exceptions;
 using TaskTracker.Domain.Interfaces;
+using TaskTracker.Domain.Logging;
 
 namespace TaskTracker.Application.Services
 {
@@ -38,11 +39,12 @@ namespace TaskTracker.Application.Services
             }
             catch (TaskTrackerException ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new TaskTrackerException(ex.Message);
             }
             catch (Exception ex)
             {
-                _logger.LogError("[Error]: {Exception}", ex);
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new Exception(ErrorConstants.ServerError);
             }
         }
@@ -63,10 +65,12 @@ namespace TaskTracker.Application.Services
             }
             catch (TaskTrackerException ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new TaskTrackerException(ex.Message);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new Exception(ErrorConstants.ServerError);
             }
         }
@@ -90,10 +94,12 @@ namespace TaskTracker.Application.Services
             }
             catch (TaskTrackerException ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new TaskTrackerException(ex.Message);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new Exception(ErrorConstants.ServerError);
             }
         }
@@ -114,10 +120,12 @@ namespace TaskTracker.Application.Services
             }
             catch (TaskTrackerException ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new TaskTrackerException(ex.Message);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new Exception(ErrorConstants.CreateTaskFailed);
             }
         }
@@ -134,10 +142,12 @@ namespace TaskTracker.Application.Services
             }
             catch (TaskTrackerException ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new TaskTrackerException(ex.Message);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new Exception(ErrorConstants.ServerError);
             }
         }

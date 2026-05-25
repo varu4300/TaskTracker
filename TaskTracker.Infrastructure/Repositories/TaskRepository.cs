@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using TaskTracker.Domain.Entities;
 using TaskTracker.Domain.Interfaces;
+using TaskTracker.Domain.Logging;
 using TaskTracker.Infrastructure.Data;
 
 namespace TaskTracker.Infrastructure.Repositories
@@ -8,11 +10,13 @@ namespace TaskTracker.Infrastructure.Repositories
 
     public class TaskRepository : ITaskRepository
     {
+        private readonly ILogger<TaskRepository> _logger;
         private readonly AppDbContext _context;
         
-        public TaskRepository(AppDbContext context)
+        public TaskRepository(AppDbContext context, ILogger<TaskRepository> logger)
         {
             _context = context;
+            _logger = logger;
         }
         
         public async Task<bool> CreateTaskItemAsync(TaskItem taskItem)
@@ -24,6 +28,7 @@ namespace TaskTracker.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new Exception(ex.Message);
             }
         }
@@ -37,6 +42,7 @@ namespace TaskTracker.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new Exception(ex.Message);
             }
         }
@@ -50,6 +56,7 @@ namespace TaskTracker.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new Exception(ex.Message);
             }
         }
@@ -66,6 +73,7 @@ namespace TaskTracker.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new Exception(ex.Message);
             }
         }
@@ -81,6 +89,7 @@ namespace TaskTracker.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 throw new Exception(ex.Message);
             }
         }

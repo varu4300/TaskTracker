@@ -27,6 +27,10 @@ namespace TaskTracker.Tests.Setup
                 .Setup(x => x["CANNOT_MARK_DONE"])
                 .Returns(new LocalizedString("CANNOT_MARK_DONE", ErrorMessageConstants.CannotMarkDoneMessage));
             
+            localizerMock
+                .Setup(x => x["TASK_NOT_FOUND"])
+                .Returns(new LocalizedString("TASK_NOT_FOUND", ErrorMessageConstants.CannotMarkDoneMessage));
+            
            
         }
     }

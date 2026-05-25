@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Moq;
 using TaskTracker.Domain.Entities;
 using TaskTracker.Infrastructure.Data;
 using TaskTracker.Infrastructure.Repositories;
@@ -18,14 +20,14 @@ namespace TaskTracker.Tests.UnitTests.Repositories
 
             return new AppDbContext(options);
         }
-       
+        
         [Fact]
         public async Task CreateTaskItemAsync_Should_Create_Task()
         {
             // Arrange
             var context = GetDbContext();
-
-            var repository = new TaskRepository(context);
+            var logger = new Mock<ILogger<TaskRepository>>();
+            var repository = new TaskRepository(context, logger.Object);
 
             var task = new TaskItem
             {
@@ -47,7 +49,7 @@ namespace TaskTracker.Tests.UnitTests.Repositories
         {
             // Arrange
             var context = GetDbContext();
-
+            var logger = new Mock<ILogger<TaskRepository>>();
             var taskItem = new TaskItem
             {
                 Id = 1,
@@ -61,7 +63,7 @@ namespace TaskTracker.Tests.UnitTests.Repositories
 
             await context.SaveChangesAsync();
 
-            var repository = new TaskRepository(context);
+            var repository = new TaskRepository(context, logger.Object);
 
             // Act
             var result = await repository.UpdateTaskItemAsync(taskItem);

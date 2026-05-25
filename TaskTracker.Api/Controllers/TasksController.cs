@@ -11,6 +11,7 @@ using TaskTracker.Api.Utilities.Filters;
 using TaskTracker.Application.Interfaces;
 using TaskTracker.Application.Utilities;
 using TaskTracker.Domain.Exceptions;
+using TaskTracker.Domain.Logging;
 
 namespace TaskTracker.Api.Controllers
 {
@@ -19,15 +20,17 @@ namespace TaskTracker.Api.Controllers
         private readonly ITaskItemService _taskItemService;
         private readonly IStringLocalizer<GlobalResource> _localizer;
         private readonly IMapper _mapper;
-        
+        private readonly ILogger<TasksController> _logger;
         public TasksController(
             ITaskItemService taskItemService,
             IStringLocalizer<GlobalResource> localizer,
-            IMapper mapper)
+            IMapper mapper,
+            ILogger <TasksController> logger)
         {
             _taskItemService = taskItemService;
             _localizer = localizer;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -42,11 +45,13 @@ namespace TaskTracker.Api.Controllers
             }
             catch (TaskTrackerException ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Message = _localizer.GetString(ex.Message);
             }
             catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Message = _localizer.GetString(ErrorConstants.ServerError);
             }
@@ -66,11 +71,13 @@ namespace TaskTracker.Api.Controllers
             }
             catch (TaskTrackerException ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Message = _localizer.GetString(ex.Message);
             }
             catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Message = _localizer.GetString(ErrorConstants.ServerError);
             }
@@ -89,11 +96,13 @@ namespace TaskTracker.Api.Controllers
             }
             catch (TaskTrackerException ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Message = _localizer.GetString(ex.Message);
             }
             catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Message = _localizer.GetString(ErrorConstants.ServerError);
             }
@@ -115,16 +124,13 @@ namespace TaskTracker.Api.Controllers
             }
             catch (TaskTrackerException ex)
             {
-                response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = _localizer.GetString(ex.Message);
-            }
-            catch (ValidationException ex)
-            {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Message = _localizer.GetString(ex.Message);
             }
             catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Message = _localizer.GetString(ErrorConstants.ServerError);
             }
@@ -147,16 +153,13 @@ namespace TaskTracker.Api.Controllers
             }
             catch (TaskTrackerException ex)
             {
-                response.StatusCode = HttpStatusCode.BadRequest;
-                response.Message = _localizer.GetString(ex.Message);
-            }
-            catch (ValidationException ex)
-            {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Message = _localizer.GetString(ex.Message);
             }
             catch (Exception ex)
             {
+                TaskTrackerLogger.Log(_logger, LogLevel.Error, ex);
                 response.StatusCode = HttpStatusCode.InternalServerError;
                 response.Message = _localizer.GetString(ErrorConstants.ServerError);
             }
