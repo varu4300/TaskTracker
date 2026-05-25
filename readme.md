@@ -4,7 +4,7 @@ It supports full CRUD operations for managing task items.
 
 ## ⚙️ To run project
 1) Ensure you're running .NET 10 (no mention of verions to use, defaulted to my workspace version)
-2) You will need to run migrations with following command from root of project (where .sln file is). Already created the migrations, but if needed to run again for some reason the following would be the command:
+2) The migrations are already included in the solution. However should the need to run migrations need to be done running the following command will generate the migrations:
 ```
 dotnet ef migrations add InitialCreate \
 --project TaskTracker.Infrastructure \
