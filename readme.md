@@ -26,8 +26,8 @@ dotnet ef migrations add InitialCreate \
 ```
 4) Validation is performed before request execution utilizing a service filter and leveraging Fluent Validations
 5) Since the task description did not include the format of endpoints the following would be the exposed endpoints:
-  -  GET PUT POST http://localhost:5149/api/tasks
-  -  GET DELETE http://localhost:5149/api/tasks/{id}
+  -  GET POST http://localhost:5149/api/tasks
+  -  GET PUT DELETE http://localhost:5149/api/tasks/{id}
 5) Adding logging for tracing source of error by tag system "[LogLevel][ClassName][Method]: {{message}}"
 
 
